@@ -1,0 +1,77 @@
+{
+  "manifest_version": 3,
+  "name": "GetCourse Video Downloader",
+  "description": "Скачивание потокового видео с сайтов GetCourse",
+  "version": "1.1.0",
+  "icons": {
+    "16": "icon128.png",
+    "32": "icon128.png",
+    "48": "icon128.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "downloads",
+    "activeTab",
+    "webRequest",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://*.getcourse.ru/*",
+    "https://*.gcfiles.net/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GetCourse Video Downloader",
+    "default_icon": {
+      "16": "icon128.png",
+      "32": "icon128.png",
+      "48": "icon128.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.getcourse.ru/*",
+        "https://*.gceuproxy.com/*",
+        "https://*.gcfiles.net/*",
+        "https://*.trbcdn.net/*",
+        "https://*.gcloader.ru/*",
+        "https://*.gcloader.com/*",
+        "https://*.gcdn.co/*",
+        "https://*.kinescope.io/*",
+        "https://*.kinescope.com/*"
+      ],
+      "js": [
+        "content_script.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    },
+    {
+      "matches": [
+        "https://*.getcourse.ru/*",
+        "https://*.gceuproxy.com/*",
+        "https://*.gcfiles.net/*",
+        "https://*.trbcdn.net/*",
+        "https://*.gcloader.ru/*",
+        "https://*.gcloader.com/*",
+        "https://*.gcdn.co/*",
+        "https://*.kinescope.io/*",
+        "https://*.kinescope.com/*"
+      ],
+      "js": [
+        "interceptor.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "world": "MAIN"
+    }
+  ]
+}
